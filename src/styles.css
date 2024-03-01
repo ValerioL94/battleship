@@ -42,6 +42,13 @@ main {
   align-items: center;
 }
 
+.side > h2 {
+  padding: 5px;
+  background-color: rgba(245, 245, 245, 0.5);
+  width: 500px;
+  text-align: center;
+  box-sizing: border-box;
+}
 #player > h2 {
   color: blue;
 }
@@ -55,12 +62,15 @@ main {
 }
 
 .board,
-.board > div {
+.board > .cell {
   cursor: pointer;
   border: 1px solid black;
   background-color: rgb(245, 245, 245, 0.3);
 }
 
+#player > .board > .cell.playerShip {
+  background-color: blue;
+}
 #opponent > .board > div:hover {
   background-color: red;
 }
