@@ -74,6 +74,10 @@ main {
 #player > .board > .cell.playerHit {
   background-color: rgb(245, 245, 245, 0.3);
 }
+
+#opponent > .board.disabled {
+  pointer-events: none;
+}
 #opponent > .board > div:hover {
   background-color: red;
 }

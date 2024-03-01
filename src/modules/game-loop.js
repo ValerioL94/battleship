@@ -46,7 +46,10 @@ const gameLoop = (() => {
       dom.displayShot('opponent', cell, true);
     } else dom.displayShot('opponent', cell, false);
     if (opponentBoard.isGameOver()) return alert(`${player.name} has won!`);
-    opponentTurn();
+    p2Board.classList.add('disabled');
+    setTimeout(() => {
+      opponentTurn();
+    }, 500);
   });
 
   function opponentTurn() {
@@ -56,6 +59,7 @@ const gameLoop = (() => {
       dom.displayShot('player', cell, true);
     } else dom.displayShot('player', cell, false);
     if (playerBoard.isGameOver()) return alert(`${opponent.name} has won!`);
+    p2Board.classList.remove('disabled');
   }
 
   function newGame() {
