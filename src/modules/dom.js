@@ -1,10 +1,10 @@
-const renderBoard = (() => {
+const dom = (() => {
   const player = document.querySelector('#player > h2');
   const opponent = document.querySelector('#opponent > h2');
-  function setPlayerName(name) {
+  function showPlayerName(name) {
     player.textContent = name;
   }
-  function setOpponentName(name) {
+  function showOpponentName(name) {
     opponent.textContent = name;
   }
   function fillCell(ship, coords) {
@@ -55,11 +55,20 @@ const renderBoard = (() => {
     }
   }
 
+  function displayShot(player, coords, boolean) {
+    const cell = document.querySelector(
+      ` #${player} >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1]}"]`
+    );
+    if (boolean) cell.classList.add(`${player}Hit`);
+    else cell.classList.add('miss');
+  }
+
   return {
-    setPlayerName,
-    setOpponentName,
+    showPlayerName,
+    showOpponentName,
     fillCell,
+    displayShot,
   };
 })();
 
-export default renderBoard;
+export default dom;
