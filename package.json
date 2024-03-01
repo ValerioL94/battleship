@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Building a battleship game while practicing test driven development using jest",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "watch": "jest --watch *.js",
