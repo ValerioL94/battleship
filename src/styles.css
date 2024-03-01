@@ -30,10 +30,61 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+#modalWrapper {
+  display: flex;
+  gap: 10px;
+}
+form {
+  display: flex;
+  gap: 10px;
+  padding: 25px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+form > input[type='text'] {
+  font-size: 0.8em;
+}
+#confirm {
+  width: 80px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 0.7em;
+  background-color: rgba(174, 202, 222, 0.8);
+  cursor: pointer;
+}
+#shipsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 25px 25px;
+}
+#shipsContainer > img {
+  height: 49px;
+}
+#carrier {
+  width: 240px;
+}
+#battleship {
+  width: 190px;
+}
+#cruiser {
+  width: 140px;
+}
+#submarine {
+  width: 140px;
+}
+#destroyer {
+  width: 90px;
+}
 #content {
   display: flex;
   gap: 50px;
 }
+#content.hide {
+  display: none;
+}
+
 .side {
   height: 600px;
   width: 600px;
