@@ -1,9 +1,9 @@
 import './styles.css';
-import newGame from './modules/game-loop.js';
+import gameLoop from './modules/game-loop.js';
 
 function importAll(r) {
   r.keys().forEach(r);
 }
 importAll(require.context('/src/images', false, /\.(png|svg|jpg|jpeg|gif)$/));
 
-newGame;
+gameLoop.newGame();
