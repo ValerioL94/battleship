@@ -5,12 +5,10 @@ import dom from './dom.js';
 const gameLoop = (() => {
   let player;
   let opponent;
-  function initPlayers() {
-    const newPlayer = new Player('Captain Bob');
-    dom.showPlayerName(newPlayer.name);
+  function initPlayers(p1, p2 = 'Captain AI') {
+    const newPlayer = new Player(`Captain ${p1}`);
     player = newPlayer;
-    const newOpponent = new Player('Captain AI');
-    dom.showOpponentName(newOpponent.name);
+    const newOpponent = new Player(p2);
     opponent = newOpponent;
   }
   let playerBoard;
@@ -61,13 +59,9 @@ const gameLoop = (() => {
     if (playerBoard.isGameOver()) return alert(`${opponent.name} has won!`);
     p2Board.classList.remove('disabled');
   }
-
-  function newGame() {
-    initPlayers();
-    initBoards();
-  }
   return {
-    newGame,
+    initPlayers,
+    initBoards,
   };
 })();
 
