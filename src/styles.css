@@ -63,7 +63,7 @@ main {
 
 .board,
 .board > .cell {
-  cursor: pointer;
+  cursor: crosshair;
   border: 1px solid black;
   background-color: rgb(245, 245, 245, 0.3);
 }
@@ -71,8 +71,19 @@ main {
 #player > .board > .cell.playerShip {
   background-color: blue;
 }
+#player > .board > .cell.playerHit {
+  background-color: rgb(245, 245, 245, 0.3);
+}
 #opponent > .board > div:hover {
   background-color: red;
+}
+#opponent > .board > .cell.opponentHit {
+  background-color: red;
+  pointer-events: none;
+}
+.board > .cell.miss {
+  background-color: grey;
+  pointer-events: none;
 }
 
 footer {
