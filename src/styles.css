@@ -61,6 +61,8 @@ form > input[type='text'] {
 }
 .ship {
   height: 50px;
+  padding: 5px;
+  box-sizing: border-box;
 }
 #carrier {
   width: 250px;
@@ -80,6 +82,10 @@ form > input[type='text'] {
 #content {
   display: flex;
   gap: 50px;
+}
+.vertical {
+  transform: rotate(90deg);
+  transform-origin: 10%;
 }
 #content.hide {
   display: none;
@@ -127,7 +133,7 @@ form > input[type='text'] {
   pointer-events: none;
 }
 #opponent > .board > div:hover {
-  background-color: red;
+  transform: scale(0.9);
 }
 #opponent > .board > .cell.opponentHit {
   background-color: red;
