@@ -1,14 +1,19 @@
 import gameLoop from './game-loop.js';
 const dom = (() => {
-  const player = document.querySelector('#player > h2');
+  const playerH2 = document.querySelector('#player > h2');
+  const player = document.getElementById('player');
   const opponent = document.querySelector('#opponent > h2');
   const start = document.getElementById('start');
   const confirmBtn = document.getElementById('confirm');
   const playerName = document.getElementById('playerName');
   const playerBoard = document.getElementById('playerBoard');
   const content = document.getElementById('content');
+  const ships = document.querySelectorAll('.ship');
+  const shipsContainer = document.getElementById('shipsContainer');
+
   function newGame() {
     start.showModal();
+    confirmBtn.disabled = true;
   }
   confirmBtn.addEventListener('click', () => {
     start.close();
@@ -16,6 +21,10 @@ const dom = (() => {
     showNames(`Captain ${playerName.value}`);
     gameLoop.initBoards();
     content.classList.remove('hide');
+    player.appendChild(playerBoard);
+    ships.forEach((ship) => {
+      ship.draggable = false;
+    });
   });
 
   playerBoard.addEventListener('dragover', (event) => {
@@ -31,7 +40,7 @@ const dom = (() => {
   });
   playerBoard.addEventListener('dragenter', function (event) {
     if (event.target.className === 'cell') {
-      event.target.style.border = '3px dotted red';
+      event.target.style.border = '3px dotted blue';
     }
   });
   playerBoard.addEventListener('dragleave', function (event) {
@@ -39,25 +48,23 @@ const dom = (() => {
       event.target.style.border = '';
     }
   });
-  // const carrier = document.getElementById('carrier');
-  // const battleship = document.getElementById('battleship');
-  // const cruiser = document.getElementById('cruiser');
-  // const submarine = document.getElementById('submarine');
-  // const destroyer = document.getElementById('destroyer');
-  // carrier,
-  // battleship,
-  // cruiser,
-  // submarine,
-  // destroyer
-  const ships = document.getElementById('shipsContainer');
-  ships.addEventListener('dragstart', (event) => {
-    if (event.target.className === 'ship') {
-      event.dataTransfer.setData('text', event.target.id);
-    }
+
+  ships.forEach((ship) => {
+    ship.addEventListener('dragstart', (event) => {
+      if (event.target.className === 'ship') {
+        event.dataTransfer.setData('text', event.target.id);
+      }
+    });
+    ship.addEventListener('dragend', (event) => {
+      if (event.target.className === 'ship') {
+        event.target.style.position = 'absolute';
+      }
+      if (shipsContainer.childElementCount === 1) confirmBtn.disabled = false;
+    });
   });
 
   function showNames(p1, p2 = 'Captain AI') {
-    player.textContent = p1;
+    playerH2.textContent = p1;
     opponent.textContent = p2;
   }
   function fillCell(ship, coords) {
@@ -65,7 +72,7 @@ const dom = (() => {
       const length = 5;
       for (let i = 0; i < length; i++) {
         const cell = document.querySelector(
-          ` #player >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
+          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
         );
         cell.classList.add('playerShip');
       }
@@ -74,7 +81,7 @@ const dom = (() => {
       const length = 4;
       for (let i = 0; i < length; i++) {
         const cell = document.querySelector(
-          ` #player >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
+          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
         );
         cell.classList.add('playerShip');
       }
@@ -83,7 +90,7 @@ const dom = (() => {
       const length = 3;
       for (let i = 0; i < length; i++) {
         const cell = document.querySelector(
-          ` #player >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
+          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
         );
         cell.classList.add('playerShip');
       }
@@ -92,7 +99,7 @@ const dom = (() => {
       const length = 3;
       for (let i = 0; i < length; i++) {
         const cell = document.querySelector(
-          ` #player >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
+          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
         );
         cell.classList.add('playerShip');
       }
@@ -101,7 +108,7 @@ const dom = (() => {
       const length = 2;
       for (let i = 0; i < length; i++) {
         const cell = document.querySelector(
-          ` #player >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
+          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
         );
         cell.classList.add('playerShip');
       }
