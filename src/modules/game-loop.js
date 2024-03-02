@@ -16,15 +16,10 @@ const gameLoop = (() => {
   function initBoards() {
     const newPlayerBoard = new Gameboard();
     newPlayerBoard.placeShip('carrier', [8, 1]);
-    dom.fillCell('carrier', [8, 1]);
     newPlayerBoard.placeShip('battleship', [6, 1]);
-    dom.fillCell('battleship', [6, 1]);
     newPlayerBoard.placeShip('cruiser', [4, 1]);
-    dom.fillCell('cruiser', [4, 1]);
     newPlayerBoard.placeShip('submarine', [2, 1]);
-    dom.fillCell('submarine', [2, 1]);
     newPlayerBoard.placeShip('destroyer', [0, 1]);
-    dom.fillCell('destroyer', [0, 1]);
     playerBoard = newPlayerBoard;
     const newOpponentBoard = new Gameboard();
     newOpponentBoard.placeShip('carrier', [8, 4]);

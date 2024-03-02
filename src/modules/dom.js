@@ -35,7 +35,17 @@ const dom = (() => {
     if (event.target.className === 'cell') {
       event.target.style.border = '';
       const data = event.dataTransfer.getData('text');
-      event.target.appendChild(document.getElementById(data));
+      const ship = document.getElementById(data);
+      if (
+        parseInt(event.target.dataset.column) + parseInt(ship.dataset.size) >
+        10
+      )
+        return;
+      event.target.appendChild(ship);
+      ship.style.position = 'absolute';
+      shipsContainer.childElementCount === 1
+        ? (confirmBtn.disabled = false)
+        : (confirmBtn.disabled = true);
     }
   });
   playerBoard.addEventListener('dragenter', function (event) {
@@ -55,64 +65,11 @@ const dom = (() => {
         event.dataTransfer.setData('text', event.target.id);
       }
     });
-    ship.addEventListener('dragend', (event) => {
-      if (event.target.className === 'ship') {
-        event.target.style.position = 'absolute';
-      }
-      if (shipsContainer.childElementCount === 1) confirmBtn.disabled = false;
-    });
   });
 
   function showNames(p1, p2 = 'Captain AI') {
     playerH2.textContent = p1;
     opponent.textContent = p2;
-  }
-  function fillCell(ship, coords) {
-    if (ship === 'carrier') {
-      const length = 5;
-      for (let i = 0; i < length; i++) {
-        const cell = document.querySelector(
-          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
-        );
-        cell.classList.add('playerShip');
-      }
-    }
-    if (ship === 'battleship') {
-      const length = 4;
-      for (let i = 0; i < length; i++) {
-        const cell = document.querySelector(
-          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
-        );
-        cell.classList.add('playerShip');
-      }
-    }
-    if (ship === 'cruiser') {
-      const length = 3;
-      for (let i = 0; i < length; i++) {
-        const cell = document.querySelector(
-          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
-        );
-        cell.classList.add('playerShip');
-      }
-    }
-    if (ship === 'submarine') {
-      const length = 3;
-      for (let i = 0; i < length; i++) {
-        const cell = document.querySelector(
-          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
-        );
-        cell.classList.add('playerShip');
-      }
-    }
-    if (ship === 'destroyer') {
-      const length = 2;
-      for (let i = 0; i < length; i++) {
-        const cell = document.querySelector(
-          `#playerBoard >.cell[data-row="${coords[0]}"][data-column="${coords[1] + i}"]`
-        );
-        cell.classList.add('playerShip');
-      }
-    }
   }
 
   function displayShot(player, coords, boolean) {
@@ -125,7 +82,6 @@ const dom = (() => {
 
   return {
     newGame,
-    fillCell,
     displayShot,
   };
 })();
