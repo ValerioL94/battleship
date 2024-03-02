@@ -17,16 +17,17 @@ const dom = (() => {
   }
   confirmBtn.addEventListener('click', () => {
     start.close();
+    player.appendChild(playerBoard);
     gameLoop.initPlayers(playerName.value);
     showNames(`Captain ${playerName.value}`);
-    gameLoop.initBoards();
+    gameLoop.initBoards(playerShips);
     content.classList.remove('hide');
-    player.appendChild(playerBoard);
     ships.forEach((ship) => {
       ship.draggable = false;
     });
   });
 
+  const playerShips = [];
   playerBoard.addEventListener('dragover', (event) => {
     event.preventDefault();
   });
@@ -42,6 +43,15 @@ const dom = (() => {
       )
         return;
       event.target.appendChild(ship);
+      if (playerShips.length > 0) {
+        for (let i = 0; i < playerShips.length; i++) {
+          if (playerShips[i].id === ship.id) playerShips.splice(i, 1);
+        }
+      }
+      playerShips.push({
+        id: ship.id,
+        coords: [event.target.dataset.row, event.target.dataset.column],
+      });
       ship.style.position = 'absolute';
       shipsContainer.childElementCount === 1
         ? (confirmBtn.disabled = false)
@@ -63,7 +73,11 @@ const dom = (() => {
     ship.addEventListener('dragstart', (event) => {
       if (event.target.className === 'ship') {
         event.dataTransfer.setData('text', event.target.id);
+        event.target.classList.add('hide');
       }
+    });
+    ship.addEventListener('dragend', (event) => {
+      event.target.classList.remove('hide');
     });
   });
 
@@ -74,7 +88,7 @@ const dom = (() => {
 
   function displayShot(player, coords, boolean) {
     const cell = document.querySelector(
-      ` #${player} >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1]}"]`
+      `#${player} >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1]}"]`
     );
     if (boolean) cell.classList.add(`${player}Hit`);
     else cell.classList.add('miss');

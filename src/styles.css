@@ -79,13 +79,13 @@ form > input[type='text'] {
 #destroyer {
   width: 100px;
 }
+.ship.hide {
+  transition: 0.01s;
+  transform: translateX(-9999px);
+}
 #content {
   display: flex;
   gap: 50px;
-}
-.vertical {
-  transform: rotate(90deg);
-  transform-origin: 10%;
 }
 #content.hide {
   display: none;
@@ -125,7 +125,7 @@ form > input[type='text'] {
   background-color: rgb(245, 245, 245, 0.3);
 }
 
-#player > .board > .cell.playerHit {
+#playerBoard > .cell.playerHit {
   background-color: blue;
 }
 
@@ -133,7 +133,7 @@ form > input[type='text'] {
   pointer-events: none;
 }
 #opponent > .board > div:hover {
-  transform: scale(0.9);
+  border: dotted red 3px;
 }
 #opponent > .board > .cell.opponentHit {
   background-color: red;

@@ -7,40 +7,69 @@ export default class Gameboard {
 
   placeShip(ship, coords) {
     if (ship === 'carrier') {
-      ship = new Ship(5);
-      for (let i = 0; i < ship.length; i++) {
-        this.board[coords[0]][coords[1] + i] = ship;
+      const carrier = new Ship(5);
+      // if (!coords) coords = this.randomCoords(carrier);
+      for (let i = 0; i < carrier.length; i++) {
+        this.board[coords[0]][coords[1] + i] = carrier;
       }
-      this.ships.push(ship);
+      this.ships.push(carrier);
+      console.log(this.board);
     }
     if (ship === 'battleship') {
-      ship = new Ship(4);
-      for (let i = 0; i < ship.length; i++) {
-        this.board[coords[0]][coords[1] + i] = ship;
+      const battleship = new Ship(4);
+      if (!coords) coords = this.randomCoords(battleship);
+      for (let i = 0; i < battleship.length; i++) {
+        this.board[coords[0]][coords[1] + i] = battleship;
       }
-      this.ships.push(ship);
+      this.ships.push(battleship);
     }
     if (ship === 'cruiser') {
-      ship = new Ship(3);
-      for (let i = 0; i < ship.length; i++) {
-        this.board[coords[0]][coords[1] + i] = ship;
+      const cruiser = new Ship(3);
+      if (!coords) coords = this.randomCoords(cruiser);
+      for (let i = 0; i < cruiser.length; i++) {
+        this.board[coords[0]][coords[1] + i] = cruiser;
       }
-      this.ships.push(ship);
+      this.ships.push(cruiser);
     }
     if (ship === 'submarine') {
-      ship = new Ship(3);
-      for (let i = 0; i < ship.length; i++) {
-        this.board[coords[0]][coords[1] + i] = ship;
+      const submarine = new Ship(3);
+      if (!coords) coords = this.randomCoords(submarine);
+      for (let i = 0; i < submarine.length; i++) {
+        this.board[coords[0]][coords[1] + i] = submarine;
       }
-      this.ships.push(ship);
+      this.ships.push(submarine);
     }
     if (ship === 'destroyer') {
-      ship = new Ship(2);
-      for (let i = 0; i < ship.length; i++) {
-        this.board[coords[0]][coords[1] + i] = ship;
+      const destroyer = new Ship(2);
+      if (!coords) coords = this.randomCoords(destroyer);
+      for (let i = 0; i < destroyer.length; i++) {
+        this.board[coords[0]][coords[1] + i] = destroyer;
       }
-      this.ships.push(ship);
+      this.ships.push(destroyer);
     }
+  }
+
+  placeShipsRandomly() {
+    this.placeShip('carrier');
+    this.placeShip('battleship');
+    this.placeShip('cruiser');
+    this.placeShip('submarine');
+    this.placeShip('destroyer');
+  }
+
+  randomCoords(ship) {
+    let x = Math.floor(Math.random() * 10);
+    let y = Math.floor(Math.random() * (11 - ship.length));
+    while (!this.isValid([x, y])) {
+      x = Math.floor(Math.random() * 10);
+      y = Math.floor(Math.random() * (11 - ship.length));
+    }
+    return [x, y];
+  }
+
+  isValid(coords) {
+    if (this.board[coords[0]][coords[1]] === null) return true;
+    else return false;
   }
 
   receiveAttack(coords) {
