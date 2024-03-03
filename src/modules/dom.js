@@ -96,10 +96,22 @@ const dom = (() => {
     if (boolean) cell.classList.add(`${player}Hit`);
     else cell.classList.add('miss');
   }
+  const gameOverModal = document.getElementById('gameOver');
+  function gameOver(winner) {
+    const winnerName = document.querySelector('#gameOver>h1');
+    gameOverModal.showModal();
+    winnerName.textContent = `${winner} has won!`;
+  }
+  const restart = document.getElementById('restart');
+  restart.addEventListener('click', () => {
+    gameOverModal.close();
+    location.reload();
+  });
 
   return {
     newGame,
     displayShot,
+    gameOver,
   };
 })();
 

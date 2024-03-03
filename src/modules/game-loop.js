@@ -27,8 +27,7 @@ const gameLoop = (() => {
     if (newOpponentBoard.receiveAttack(cell)) {
       dom.displayShot('opponent', cell, true);
     } else dom.displayShot('opponent', cell, false);
-    if (newOpponentBoard.isGameOver())
-      return alert(`${newPlayer.name} has won!`);
+    if (newOpponentBoard.isGameOver()) return dom.gameOver(newPlayer.name);
     p2Board.classList.add('disabled');
     setTimeout(() => {
       opponentTurn();
@@ -41,8 +40,7 @@ const gameLoop = (() => {
     if (newPlayerBoard.receiveAttack(cell)) {
       dom.displayShot('player', cell, true);
     } else dom.displayShot('player', cell, false);
-    if (newPlayerBoard.isGameOver())
-      return alert(`${newOpponent.name} has won!`);
+    if (newPlayerBoard.isGameOver()) return dom.gameOver(newOpponent.name);
     p2Board.classList.remove('disabled');
   }
   return {

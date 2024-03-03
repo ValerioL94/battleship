@@ -144,6 +144,24 @@ form > input[type='text'] {
   pointer-events: none;
 }
 
+#gameOver {
+  height: 200px;
+  width: 400px;
+  text-align: center;
+  border-radius: 10px;
+}
+#gameOver::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#gameOver > button {
+  height: 50px;
+  width: 100px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: rgba(170, 187, 199, 0.8);
+}
+
 footer {
   display: flex;
   align-items: center;
