@@ -59,16 +59,18 @@ export default class Gameboard {
   randomCoords(ship) {
     let x = Math.floor(Math.random() * 10);
     let y = Math.floor(Math.random() * (11 - ship.length));
-    while (!this.isValid([x, y])) {
+    while (!this.isValid([x, y], ship)) {
       x = Math.floor(Math.random() * 10);
       y = Math.floor(Math.random() * (11 - ship.length));
     }
     return [x, y];
   }
 
-  isValid(coords) {
-    if (this.board[coords[0]][coords[1]] === null) return true;
-    else return false;
+  isValid(coords, ship) {
+    for (let i = 0; i < ship.length; i++) {
+      if (this.board[coords[0]][coords[1] + i] !== null) return false;
+    }
+    return true;
   }
 
   receiveAttack(coords) {

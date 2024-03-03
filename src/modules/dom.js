@@ -1,15 +1,15 @@
 import gameLoop from './game-loop.js';
 const dom = (() => {
-  const playerH2 = document.querySelector('#player > h2');
   const player = document.getElementById('player');
+  const playerH2 = document.querySelector('#player > h2');
   const opponent = document.querySelector('#opponent > h2');
   const start = document.getElementById('start');
   const confirmBtn = document.getElementById('confirm');
   const playerName = document.getElementById('playerName');
   const playerBoard = document.getElementById('playerBoard');
   const content = document.getElementById('content');
-  const ships = document.querySelectorAll('.ship');
   const shipsContainer = document.getElementById('shipsContainer');
+  const ships = document.querySelectorAll('.ship');
 
   function newGame() {
     start.showModal();
@@ -26,7 +26,6 @@ const dom = (() => {
       ship.draggable = false;
     });
   });
-
   const playerShips = [];
   playerBoard.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -71,7 +70,6 @@ const dom = (() => {
       event.target.style.border = '';
     }
   });
-
   ships.forEach((ship) => {
     ship.addEventListener('dragstart', (event) => {
       if (event.target.className === 'ship') {
@@ -83,12 +81,10 @@ const dom = (() => {
       event.target.classList.remove('hide');
     });
   });
-
   function showNames(p1, p2 = 'Captain AI') {
     playerH2.textContent = p1;
     opponent.textContent = p2;
   }
-
   function displayShot(player, coords, boolean) {
     const cell = document.querySelector(
       `#${player} >.board >.cell[data-row="${coords[0]}"][data-column="${coords[1]}"]`
