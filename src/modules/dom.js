@@ -50,7 +50,10 @@ const dom = (() => {
       }
       playerShips.push({
         id: ship.id,
-        coords: [event.target.dataset.row, event.target.dataset.column],
+        coords: [
+          parseInt(event.target.dataset.row),
+          parseInt(event.target.dataset.column),
+        ],
       });
       ship.style.position = 'absolute';
       shipsContainer.childElementCount === 1

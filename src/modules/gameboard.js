@@ -8,12 +8,11 @@ export default class Gameboard {
   placeShip(ship, coords) {
     if (ship === 'carrier') {
       const carrier = new Ship(5);
-      // if (!coords) coords = this.randomCoords(carrier);
+      if (!coords) coords = this.randomCoords(carrier);
       for (let i = 0; i < carrier.length; i++) {
         this.board[coords[0]][coords[1] + i] = carrier;
       }
       this.ships.push(carrier);
-      console.log(this.board);
     }
     if (ship === 'battleship') {
       const battleship = new Ship(4);
