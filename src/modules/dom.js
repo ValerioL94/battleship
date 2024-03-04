@@ -30,6 +30,7 @@ const dom = (() => {
   playerBoard.addEventListener('dragover', (event) => {
     event.preventDefault();
   });
+
   playerBoard.addEventListener('drop', (event) => {
     event.preventDefault();
     if (event.target.className === 'cell') {
@@ -41,6 +42,7 @@ const dom = (() => {
         10
       )
         return;
+      if (!isEmpty(event.target, ship)) return;
       event.target.appendChild(ship);
       if (playerShips.length > 0) {
         for (let i = 0; i < playerShips.length; i++) {
@@ -81,6 +83,16 @@ const dom = (() => {
       event.target.classList.remove('hide');
     });
   });
+  function isEmpty(target, ship) {
+    let curr = target;
+    let next = target.nextElementSibling;
+    for (let i = 0; i <= ship.dataset.size; i++) {
+      if (curr.childElementCount > 0) return false;
+      curr = next;
+      next = next.nextElementSibling;
+    }
+    return true;
+  }
   function showNames(p1, p2 = 'Captain AI') {
     playerH2.textContent = p1;
     opponent.textContent = p2;
