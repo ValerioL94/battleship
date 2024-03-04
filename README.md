@@ -1,8 +1,9 @@
-# battleship
+#  <a href="https://valeriol94.github.io/battleship/">battleship</a> <- Live here!
 
 Building a battleship game while practicing test driven development using jest
 
-
+I found this project very challenging and while I managed to build a working solution, there are many things that can and should be improved.
+For now I'll leave it like this but I'll try to revisit it in the future to make it better.
 
 -favicon: https://icons8.com/icons/set/battleship
 
