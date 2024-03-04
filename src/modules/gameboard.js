@@ -46,6 +46,7 @@ export default class Gameboard {
       }
       this.ships.push(destroyer);
     }
+    console.log(this.board);
   }
 
   placeShipsRandomly() {
@@ -67,8 +68,16 @@ export default class Gameboard {
   }
 
   isValid(coords, ship) {
+    const x = coords[0];
+    const y = coords[1];
+    if (
+      (this.board[x][y - 1] && this.board[x][y - 1] !== null) ||
+      (this.board[x][y + ship.length] &&
+        this.board[x][y + ship.length] !== null)
+    )
+      return false;
     for (let i = 0; i < ship.length; i++) {
-      if (this.board[coords[0]][coords[1] + i] !== null) return false;
+      if (this.board[x][y + i] !== null) return false;
     }
     return true;
   }
