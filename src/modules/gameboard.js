@@ -46,7 +46,6 @@ export default class Gameboard {
       }
       this.ships.push(destroyer);
     }
-    console.log(this.board);
   }
 
   placeShipsRandomly() {
