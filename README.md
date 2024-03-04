@@ -2,7 +2,10 @@
 
 Building a battleship game while practicing test driven development using jest
 
+
+
 -favicon: https://icons8.com/icons/set/battleship
+
 -background image: https://www.pexels.com/photo/german-navy-ships-13342949/
 
 -carrier icon: https://www.flaticon.com/free-icon/ship_11434232?term=carrier&page=1&position=2&origin=style&related_id=11434232
